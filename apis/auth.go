@@ -6,10 +6,9 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/go-ozzo/ozzo-routing"
 	"github.com/go-ozzo/ozzo-routing/auth"
-	"github.com/restful/starter-kit/app"
-	"github.com/restful/starter-kit/errors"
-	"github.com/restful/starter-kit/models"
-	"fmt"
+	"github.com/nettyrnp/go-rest/app"
+	"github.com/nettyrnp/go-rest/errors"
+	"github.com/nettyrnp/go-rest/models"
 )
 
 type Credential struct {
@@ -60,7 +59,5 @@ func JWTHandler(c *routing.Context, j *jwt.Token) error {
 	app.GetRequestScope(c).SetUserID(userID)
 	userRole := j.Claims.(jwt.MapClaims)["role"].(string)
 	app.GetRequestScope(c).SetUserRole(userRole)
-	fmt.Println(">> app.GetRequestScope(c).UserRole():", app.GetRequestScope(c).UserRole())
-	fmt.Println(">> app.GetRequestScope(c).UserID():", app.GetRequestScope(c).UserID())
 	return nil
 }

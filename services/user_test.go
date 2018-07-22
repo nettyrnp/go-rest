@@ -4,8 +4,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/restful/starter-kit/app"
-	"github.com/restful/starter-kit/models"
+	"github.com/nettyrnp/go-rest/app"
+	"github.com/nettyrnp/go-rest/models"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -45,29 +45,6 @@ func TestUserService_Create(t *testing.T) {
 
 	// validation error
 	_, err = s.Create(nil, &models.User{
-		Name: "",
-	})
-	assert.NotNil(t, err)
-}
-
-func TestUserService_Update(t *testing.T) {
-	s := NewUserService(newMockUserDAO())
-	user, err := s.Update(nil, 2, &models.User{
-		Name: "ddd",
-	})
-	if assert.Nil(t, err) && assert.NotNil(t, user) {
-		assert.Equal(t, 2, user.Id)
-		assert.Equal(t, "ddd", user.Name)
-	}
-
-	// dao error
-	_, err = s.Update(nil, 100, &models.User{
-		Name: "ddd",
-	})
-	assert.NotNil(t, err)
-
-	// validation error
-	_, err = s.Update(nil, 2, &models.User{
 		Name: "",
 	})
 	assert.NotNil(t, err)
@@ -131,17 +108,6 @@ func (m *mockUserDAO) Create(rs app.RequestScope, user *models.User) error {
 	user.Id = len(m.records) + 1
 	m.records = append(m.records, *user)
 	return nil
-}
-
-func (m *mockUserDAO) Update(rs app.RequestScope, id int, user *models.User) error {
-	user.Id = id
-	for i, record := range m.records {
-		if record.Id == id {
-			m.records[i] = *user
-			return nil
-		}
-	}
-	return errors.New("not found")
 }
 
 func (m *mockUserDAO) Delete(rs app.RequestScope, id int) error {

@@ -11,7 +11,7 @@ import (
 	"github.com/go-ozzo/ozzo-routing/access"
 	"github.com/go-ozzo/ozzo-routing/fault"
 	"github.com/go-ozzo/ozzo-validation"
-	"github.com/restful/starter-kit/errors"
+	"github.com/nettyrnp/go-rest/errors"
 )
 
 // Init returns a middleware that prepares the request context and processing environment.

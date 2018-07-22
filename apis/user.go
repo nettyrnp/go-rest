@@ -4,8 +4,8 @@ import (
 	"strconv"
 
 	"github.com/go-ozzo/ozzo-routing"
-	"github.com/restful/starter-kit/app"
-	"github.com/restful/starter-kit/models"
+	"github.com/nettyrnp/go-rest/app"
+	"github.com/nettyrnp/go-rest/models"
 )
 
 type (
@@ -13,10 +13,9 @@ type (
 	userService interface {
 		Get(rs app.RequestScope, id int) (*models.User, error)
 		Query(rs app.RequestScope, offset, limit int) ([]models.User, error)
-		Count(rs app.RequestScope) (int, error)
 		Create(rs app.RequestScope, model *models.User) (*models.User, error)
-		Update(rs app.RequestScope, id int, model *models.User) (*models.User, error)
 		Delete(rs app.RequestScope, id int) (*models.User, error)
+		Count(rs app.RequestScope) (int, error)
 	}
 
 	// userResource defines the handlers for the CRUD APIs.
@@ -31,7 +30,6 @@ func ServeUserResource(rg *routing.RouteGroup, service userService) {
 	rg.Get("/users/<id>", r.get)
 	rg.Get("/users", r.query)
 	rg.Post("/users", r.create)
-	rg.Put("/users/<id>", r.update)
 	rg.Delete("/users/<id>", r.delete)
 }
 
@@ -70,31 +68,6 @@ func (r *userResource) create(c *routing.Context) error {
 		return err
 	}
 	response, err := r.service.Create(app.GetRequestScope(c), &model)
-	if err != nil {
-		return err
-	}
-
-	return c.Write(response)
-}
-
-func (r *userResource) update(c *routing.Context) error {
-	id, err := strconv.Atoi(c.Param("id"))
-	if err != nil {
-		return err
-	}
-
-	rs := app.GetRequestScope(c)
-
-	model, err := r.service.Get(rs, id)
-	if err != nil {
-		return err
-	}
-
-	if err := c.Read(model); err != nil {
-		return err
-	}
-
-	response, err := r.service.Update(rs, id, model)
 	if err != nil {
 		return err
 	}

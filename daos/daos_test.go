@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/go-ozzo/ozzo-dbx"
-	"github.com/restful/starter-kit/app"
+	"github.com/nettyrnp/go-rest/app"
 )
 
 func testDBCall(db *dbx.DB, f func(rs app.RequestScope)) {
@@ -34,6 +34,13 @@ func (rs *requestScope) UserID() string {
 }
 
 func (rs *requestScope) SetUserID(id string) {
+}
+
+func (rs *requestScope) UserRole() string {
+	return "tester"
+}
+
+func (rs *requestScope) SetUserRole(role string) {
 }
 
 func (rs *requestScope) RequestID() string {

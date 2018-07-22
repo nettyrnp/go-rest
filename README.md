@@ -22,7 +22,7 @@ Install the application from the Terminal:
 go get github.com/nettyrnp/go-rest
 ```
 
-Run the application from within Intellij IDEA (`Run` button) or from the Terminal:
+Run the application from within Intellij IDEA (`Run` button with server.go file open) or from the Terminal:
 ```shell
 make run
 ```
@@ -35,7 +35,7 @@ The application runs as an HTTP server at port 8080. It provides the following R
 * `POST /u2/users`: creates a new user
 * `DELETE /u2/users/<id>`: deletes a user [NB: available only for users with role `admin`]
 
-Now in the Terminal run the following commands (or use Postman etc):
+Now in a separate Terminal run the following commands (or use Postman etc):
 
 ```shell
 # authenticate as user via: POST /u2/auth

@@ -11,17 +11,16 @@ import (
 	"github.com/go-ozzo/ozzo-routing/content"
 	"github.com/go-ozzo/ozzo-routing/cors"
 	_ "github.com/lib/pq"
-	"github.com/restful/starter-kit/apis"
-	"github.com/restful/starter-kit/app"
-	"github.com/restful/starter-kit/daos"
-	"github.com/restful/starter-kit/errors"
-	"github.com/restful/starter-kit/services"
+	"github.com/nettyrnp/go-rest/apis"
+	"github.com/nettyrnp/go-rest/app"
+	"github.com/nettyrnp/go-rest/daos"
+	"github.com/nettyrnp/go-rest/errors"
+	"github.com/nettyrnp/go-rest/services"
 )
 
 func main() {
 	// load application configurations
 	if err := app.LoadConfig("./config"); err != nil {
-	//if err := app.LoadConfig("./starter-kit/config"); err != nil {
 		panic(fmt.Errorf("Invalid application configuration: %s", err))
 	}
 

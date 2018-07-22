@@ -3,9 +3,9 @@ package daos
 import (
 	"testing"
 
-	"github.com/restful/starter-kit/app"
-	"github.com/restful/starter-kit/models"
-	"github.com/restful/starter-kit/migrate"
+	"github.com/nettyrnp/go-rest/app"
+	"github.com/nettyrnp/go-rest/models"
+	"github.com/nettyrnp/go-rest/migrate"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -35,30 +35,6 @@ func TestUserDAO(t *testing.T) {
 			assert.Nil(t, err)
 			assert.NotEqual(t, 1000, user.Id)
 			assert.NotZero(t, user.Id)
-		})
-	}
-
-	{
-		// Update
-		testDBCall(db, func(rs app.RequestScope) {
-			user := &models.User{
-				Id:   2,
-				Name: "tester",
-			}
-			err := dao.Update(rs, user.Id, user)
-			assert.Nil(t, err)
-		})
-	}
-
-	{
-		// Update with error
-		testDBCall(db, func(rs app.RequestScope) {
-			user := &models.User{
-				Id:   2,
-				Name: "tester",
-			}
-			err := dao.Update(rs, 99999, user)
-			assert.NotNil(t, err)
 		})
 	}
 

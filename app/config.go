@@ -41,10 +41,8 @@ func LoadConfig(configPaths ...string) error {
 	v.SetConfigName("app")
 	v.SetConfigType("yaml")
 	v.SetEnvPrefix("restful")
-	//v.SetEnvPrefix("restful/starter-kit")
 	v.AutomaticEnv()
 	v.SetDefault("error_file", "config/errors.yaml")
-	//v.SetDefault("error_file", "starter-kit/config/errors.yaml")
 	v.SetDefault("server_port", 8080)
 	v.SetDefault("jwt_signing_method", "HS256")
 	for _, path := range configPaths {

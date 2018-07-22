@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/go-ozzo/ozzo-routing"
-	"github.com/restful/starter-kit/util"
+	"github.com/nettyrnp/go-rest/util"
 )
 
 const (

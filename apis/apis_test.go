@@ -9,8 +9,8 @@ import (
 	"github.com/Sirupsen/logrus"
 	"github.com/go-ozzo/ozzo-routing"
 	"github.com/go-ozzo/ozzo-routing/content"
-	"github.com/restful/starter-kit/app"
-	"github.com/restful/starter-kit/migrate"
+	"github.com/nettyrnp/go-rest/app"
+	"github.com/nettyrnp/go-rest/migrate"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -42,7 +42,6 @@ func testAPI(router *routing.Router, method, URL, body string) *httptest.Respons
 	req, _ := http.NewRequest(method, URL, bytes.NewBufferString(body))
 	req.Header.Set("Content-Type", "application/json")
 	res := httptest.NewRecorder()
-	//fmt.Println(">> req:", req)
 	router.ServeHTTP(res, req)
 	return res
 }
