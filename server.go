@@ -70,7 +70,7 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 		app.Transactional(db),
 	)
 
-	rg := router.Group("/v1")
+	rg := router.Group("/u2")
 
 	rg.Post("/auth", apis.Auth(app.Config.JWTSigningKey))
 	rg.Use(auth.JWT(app.Config.JWTVerificationKey, auth.JWTOptions{
