@@ -27,6 +27,11 @@ func Unauthorized(err string) *APIError {
 	return NewAPIError(http.StatusUnauthorized, "UNAUTHORIZED", Params{"error": err})
 }
 
+// AccessDenied creates a new API error representing an access rights violation
+func AccessDenied(err string) *APIError {
+	return NewAPIError(http.StatusForbidden, "ACCESS_DENIED", Params{"error": err})
+}
+
 // InvalidData converts a data validation error into an API error (HTTP 400)
 func InvalidData(errs validation.Errors) *APIError {
 	result := []validationError{}

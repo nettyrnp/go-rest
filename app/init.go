@@ -59,6 +59,8 @@ func convertError(c *routing.Context, err error) error {
 		return errors.InvalidData(err.(validation.Errors))
 	case routing.HTTPError:
 		switch err.(routing.HTTPError).StatusCode() {
+		case http.StatusForbidden:
+			return errors.AccessDenied(err.Error())
 		case http.StatusUnauthorized:
 			return errors.Unauthorized(err.Error())
 		case http.StatusNotFound:

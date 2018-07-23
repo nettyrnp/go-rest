@@ -45,7 +45,7 @@ func (dao *UserDAO) Delete(rs app.RequestScope, id int) error {
 		}
 		return rs.Tx().Model(user).Delete()
 	} else {
-		return errors.Unauthorized("Only admins are allowed for this operation")
+		return errors.AccessDenied("You don't have admin rights for this operation")
 	}
 }
 

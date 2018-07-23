@@ -9,5 +9,9 @@ UNAUTHORIZED:
   message: "Authentication failed."
   developer_message: "Authentication failed: {error}"
 
+ACCESS_DENIED:
+  message: "Access denied."
+  developer_message: "Access denied: {error}"
+
 INVALID_DATA:
   message: "There is some problem with the data you submitted. See \"details\" for more information."
