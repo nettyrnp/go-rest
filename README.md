@@ -5,6 +5,7 @@ Features:
 * RESTful endpoints
 * Standard CRUD operations (all transactional)
 * JWT-based authentication
+* Paging
 
 
 ## How to launch the application

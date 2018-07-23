@@ -53,11 +53,6 @@ func main() {
 func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 	router := routing.New()
 
-	//router.To("GET,HEAD", "/ping", func(c *routing.Context) error {
-	//	c.Abort()  // skip all other middlewares/handlers
-	//	return c.Write("OK " + app.Version)
-	//})
-
 	router.Use(
 		app.Init(logger),
 		content.TypeNegotiator(content.JSON),
@@ -79,8 +74,6 @@ func buildRouter(logger *logrus.Logger, db *dbx.DB) *routing.Router {
 
 	userDAO := daos.NewUserDAO()
 	apis.ServeUserResource(rg, services.NewUserService(userDAO))
-
-	// wire up more resource APIs here
 
 	return router
 }

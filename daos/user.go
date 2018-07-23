@@ -52,7 +52,15 @@ func (dao *UserDAO) Delete(rs app.RequestScope, id int) error {
 // Query retrieves the user records with the specified offset and limit from the database.
 func (dao *UserDAO) Query(rs app.RequestScope, offset, limit int) ([]models.User, error) {
 	users := []models.User{}
-	err := rs.Tx().Select().OrderBy("id").Offset(int64(offset)).Limit(int64(limit)).All(&users)
+	var err error
+	if rs.UserRole() == "user" {
+		err = rs.Tx().Select().Where(dbx.HashExp{"role": "user"}).OrderBy("id").Offset(int64(offset)).Limit(int64(limit)).All(&users)
+		return users, err
+	} else if rs.UserRole() == "admin" {
+		err = rs.Tx().Select().OrderBy("id").Offset(int64(offset)).Limit(int64(limit)).All(&users)
+	} else {
+		panic("Unexpected user role:" + rs.UserRole())
+	}
 	return users, err
 }
 
