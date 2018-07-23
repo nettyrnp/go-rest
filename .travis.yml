@@ -20,7 +20,7 @@ install:
   - dep ensure
 
 before_script:
-  - psql -U postgres -c 'CREATE DATABASE go_restful;';
+  - psql -U postgres -c 'CREATE DATABASE postgres;';
 
 script:
   - make test
